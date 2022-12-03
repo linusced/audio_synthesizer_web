@@ -1,0 +1,48 @@
+#midi-keyboard {
+    position: relative;
+    width: 100%;
+    height: 8vw;
+    border-top: 3px solid #666;
+}
+
+.midi-keyboard-white-key {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background-color: #fff;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    color: #000;
+}
+
+.midi-keyboard-black-key {
+    position: absolute;
+    top: 0;
+    height: 60%;
+    background-color: #444;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    font-size: 16px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.midi-keyboard-white-key:hover,
+.midi-keyboard-black-key:hover {
+    background-color: #888;
+}
+
+.midi-keyboard-white-key.active {
+    background-color: #007fff;
+}
+
+.midi-keyboard-black-key.active {
+    background-color: #ff0050;
+}

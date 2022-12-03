@@ -1,0 +1,64 @@
+#waveform-harmonics-container {
+    position: relative;
+    flex-grow: 1;
+}
+
+#waveform-harmonics {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+}
+
+#waveform-harmonics .row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#waveform-harmonics .row:first-child {
+    padding-bottom: 10px;
+}
+
+#waveform-harmonics h2 {
+    width: 15%;
+    font-size: 16px;
+    color: #fff;
+}
+
+#waveform-harmonics h2.label {
+    font-size: 22px;
+}
+
+#waveform-harmonics input {
+    border-radius: 0;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    color: #fff;
+    background: none;
+    font-size: 18px;
+    padding: 3px 0;
+}
+
+#waveform-harmonics input:last-child {
+    border-right: 1px solid #ddd;
+}
+
+#waveform-harmonics .row:last-child input {
+    border-bottom: 1px solid #ddd;
+}
+
+#waveform-harmonics input,
+#waveform-harmonics h2.long {
+    width: 42%;
+}

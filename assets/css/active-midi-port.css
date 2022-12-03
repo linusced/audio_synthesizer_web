@@ -1,0 +1,41 @@
+#active-midi-port-container {
+    position: relative;
+    width: 170px;
+    background-color: #222;
+    color: #fff;
+}
+
+#active-midi-port {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 7px 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#active-midi-port-title {
+    margin-bottom: 10px;
+}
+
+.active-midi-port-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5px 3px 5px 10px;
+}
+
+.active-midi-port-item * {
+    cursor: pointer;
+}
+
+.active-midi-port-item input {
+    margin-right: 10px;
+}
+
+.active-midi-port-item input:checked+label {
+    color: #9cbdff;
+}

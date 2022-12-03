@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Synthesizer</title>
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/input-knob.css">
+  <link rel="stylesheet" href="assets/css/midi-keyboard.css">
+  <link rel="stylesheet" href="assets/css/waveform-harmonics.css">
+  <link rel="stylesheet" href="assets/css/active-midi-port.css">
+
+  <script src="assets/js/gui/main.js"></script>
+  <script src="assets/js/gui/input-knob.js"></script>
+  <script src="assets/js/gui/midi-keyboard.js" defer></script>
+  <script src="assets/js/gui/waveform.js" defer></script>
+  <script src="assets/js/gui/waveform-harmonics.js" defer></script>
+  <script src="assets/js/gui/main-content.js" defer></script>
+  <script src="assets/js/gui/audio-data.js" defer></script>
+
+  <script src="assets/js/synth/waveform.js"></script>
+  <script src="assets/js/synth/adsr.js"></script>
+  <script src="assets/js/synth/synthesizer.js"></script>
+  <script src="assets/js/synth/audio_utility.js"></script>
+  <script src="assets/js/synth/gui_callbacks.js"></script>
+  <script src="assets/js/synth/main.js" defer></script>
+</head>
+
+<body>
+  <div id="canvas-content">
+    <canvas id="waveform"></canvas>
+    <canvas id="audio-data"></canvas>
+  </div>
+  <div id="main-content">
+    <div id="main-content-left">
+      <h1>Waveform harmonics:</h1>
+      <div id="waveform-harmonics-container">
+        <div id="waveform-harmonics">
+          <div class="row">
+            <h2 class="label">h</h2>
+            <h2 class="label long">Amplitude:</h2>
+            <h2 class="label long">Phase:</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="main-content-right">
+      <div id="main-content-right-top">
+        <div id="active-midi-port-container">
+          <div id="active-midi-port">
+            <h3 id="active-midi-port-title">Searching for MIDI ports...</h3>
+          </div>
+        </div>
+        <div id="main-content-knobs-container">
+          <div id="main-content-knobs">
+            <div class="input-knob-container">
+              <h2>Attack (ms)</h2>
+              <div class="input-knob" id="adsr-attack"></div>
+            </div>
+            <div class="input-knob-container">
+              <h2>Decay (ms)</h2>
+              <div class="input-knob" id="adsr-decay"></div>
+            </div>
+            <div class="input-knob-container">
+              <h2>Sustain (%)</h2>
+              <div class="input-knob" id="adsr-sustain"></div>
+            </div>
+            <div class="input-knob-container">
+              <h2>Release (ms)</h2>
+              <div class="input-knob" id="adsr-release"></div>
+            </div>
+            <div class="input-knob-container">
+              <h2>LPF (hz)</h2>
+              <div class="input-knob" id="lpf"></div>
+            </div>
+            <div class="input-knob-container">
+              <h2>HPF (hz)</h2>
+              <div class="input-knob" id="hpf"></div>
+            </div>
+            <div class="input-knob-container">
+              <h2>Polyphony</h2>
+              <div class="input-knob" id="polyphony"></div>
+            </div>
+            <div class="input-knob-container">
+              <h2>Volume</h2>
+              <div class="input-knob" id="volume"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="main-content-right-bottom">
+        <p class="keyboard-shortcut">
+          <span class="keyboard-shortcut-key" data-keyboard-shortcut-key="z">Z</span>
+          <span>Octave decrease</span>
+        </p>
+        <p class="keyboard-shortcut">
+          <span class="keyboard-shortcut-key" data-keyboard-shortcut-key="x">X</span>
+          <span>Octave increase</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="midi-keyboard"></div>
+</body>
+
+</html>
