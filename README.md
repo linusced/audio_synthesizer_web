@@ -5,4 +5,4 @@ This is a web version of my c++ program [Audio Synthesizer](https://github.com/l
 Simply open [Audio Synthesizer Web](https://linusced.github.io/audio_synthesizer_web) in your browser and try it out yourself.
 
 # Browser Compatibility
-It does NOT work on mobile. On desktop it works successfully in Google Chrome, Microsoft Edge and Opera GX (probably works with regular Opera browser too). It also works in Safari but without MIDI support. It currently does NOT work in Firefox. I will try to fix that in the near future. It 
+It does NOT work on mobile. On desktop it works successfully in Google Chrome, Microsoft Edge and Opera GX (probably works in regular Opera browser too). It also works in Safari but without MIDI support. It currently does NOT work in Firefox. I will try to fix that in the near future. It 
