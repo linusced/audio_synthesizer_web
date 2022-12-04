@@ -1,9 +1,7 @@
-const audioDataCanvas = document.querySelector("#audio-data"), audioDataCtx = audioDataCanvas.getContext("2d");
-let bufferSize;
+const audioDataCanvas = document.querySelector("#audio-data"),
+    audioDataCtx = audioDataCanvas.getContext("2d");
 
 function GUIAudioDataDraw() {
-    bufferSize = synth.longBufferData.length;
-    console.log("bufferSize " + bufferSize);
     requestAnimationFrame(() => audioDataDraw());
 }
 
@@ -11,15 +9,15 @@ function audioDataDraw() {
     audioDataCtx.clearRect(0, 0, audioDataCanvas.width, audioDataCanvas.height);
     audioDataCtx.fillStyle = "#fff";
 
-    const step = bufferSize / audioDataCanvas.width;
+    const step = synth.longBufferData.length / audioDataCanvas.width;
     let x, y, min, max, value;
 
     for (x = 0; x < audioDataCanvas.width; x++) {
-        min = 1;
-        max = -1;
+        min = 1.0;
+        max = -1.0;
 
         for (y = 0; y < step; y++) {
-            value = synth.longBufferData[x * step + y];
+            value = synth.longBufferData[Math.round(x * step + y)];
             if (value < min)
                 min = value;
             if (value > max)

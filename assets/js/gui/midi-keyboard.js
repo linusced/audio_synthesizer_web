@@ -51,12 +51,16 @@ window.addEventListener("mouseup", () => {
 
 function GUINotePress(idArray) {
     idArray.forEach(id => {
-        midiKeyboard.querySelector("[data-midi-key-id=\"" + id + "\"]").classList.add("active");
+        const elem = midiKeyboard.querySelector("[data-midi-key-id=\"" + id + "\"]");
+        if (elem)
+            elem.classList.add("active");
     });
 }
 function GUINoteRelease(idArray) {
     idArray.forEach(id => {
-        midiKeyboard.querySelector("[data-midi-key-id=\"" + id + "\"]").classList.remove("active");
+        const elem = midiKeyboard.querySelector("[data-midi-key-id=\"" + id + "\"]");
+        if (elem)
+            elem.classList.remove("active");
     });
 }
 
@@ -64,6 +68,6 @@ function GUIOctaveChange(octave) {
     midiKeyboard.querySelectorAll(".midi-keyboard-key").forEach(btn => btn.innerHTML = "");
 
     for (let i = 0; i < noteKeys.length; i++) {
-        midiKeyboard.querySelector("[data-midi-key-id=\"" + (octave * 12 + startID + i) + "\"]").innerHTML = new String(noteKeys[i].key).toUpperCase();
+        midiKeyboard.querySelector("[data-midi-key-id=\"" + (octave * 12 + startID + i) + "\"]").innerHTML = noteKeys[i].key;
     }
 }

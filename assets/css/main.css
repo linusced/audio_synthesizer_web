@@ -168,3 +168,45 @@ label {
 .keyboard-shortcut-key.active {
     background-color: #0f0;
 }
+
+#start-btn-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000;
+    padding-top: 35vh;
+}
+
+#start-btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px 15px;
+    background-color: #222;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+}
+
+#start-btn-content>h1 {
+    font-size: 38px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+#start-btn {
+    font-size: 32px;
+    padding: 15px 30px;
+    color: #fff;
+    background-color: #053412;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#start-btn:hover {
+    background-color: #096122;
+}

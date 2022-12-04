@@ -1,5 +1,5 @@
-const noteKeys = [{ note: "C", octave: 0, key: "a" }, { note: "C#", octave: 0, key: "w" }, { note: "D", octave: 0, key: "s" }, { note: "D#", octave: 0, key: "e" }, { note: "E", octave: 0, key: "d" }, { note: "F", octave: 0, key: "f" }, { note: "F#", octave: 0, key: "t" }, { note: "G", octave: 0, key: "g" }, { note: "G#", octave: 0, key: "y" },
-{ note: "A", octave: 1, key: "h" }, { note: "A#", octave: 1, key: "u" }, { note: "B", octave: 1, key: "j" }, { note: "C", octave: 1, key: "k" }, { note: "C#", octave: 1, key: "o" }, { note: "D", octave: 1, key: "l" }, { note: "D#", octave: 1, key: "p" }, { note: "E", octave: 1, key: "ö" }, { note: "F", octave: 1, key: "ä" }];
+const noteKeys = [{ note: "C", octave: 0, key: "A", code: "KeyA" }, { note: "C#", octave: 0, key: "W", code: "KeyW" }, { note: "D", octave: 0, key: "S", code: "KeyS" }, { note: "D#", octave: 0, key: "E", code: "KeyE" }, { note: "E", octave: 0, key: "D", code: "KeyD" }, { note: "F", octave: 0, key: "F", code: "KeyF" }, { note: "F#", octave: 0, key: "T", code: "KeyT" }, { note: "G", octave: 0, key: "G", code: "KeyG" }, { note: "G#", octave: 0, key: "Y", code: "KeyY" },
+{ note: "A", octave: 1, key: "H", code: "KeyH" }, { note: "A#", octave: 1, key: "U", code: "KeyU" }, { note: "B", octave: 1, key: "J", code: "KeyJ" }, { note: "C", octave: 1, key: "K", code: "KeyK" }, { note: "C#", octave: 1, key: "O", code: "KeyO" }, { note: "D", octave: 1, key: "L", code: "KeyL" }, { note: "D#", octave: 1, key: "P", code: "KeyP" }, { note: "E", octave: 1, key: ";", code: "Semicolon" }, { note: "F", octave: 1, key: "'", code: "Quote" }];
 
 const noteKeysDown = [];
 var inputElementIsFocused = false;
@@ -12,16 +12,16 @@ function inputBlur() {
 }
 
 window.addEventListener("keydown", e => {
-    if (!inputElementIsFocused && !e.altKey && !e.ctrlKey && !e.metaKey && !noteKeysDown.includes(e.key)) {
-        noteKeysDown.push(e.key);
+    if (!inputElementIsFocused && !e.altKey && !e.ctrlKey && !e.metaKey && !noteKeysDown.includes(e.code)) {
+        noteKeysDown.push(e.code);
 
-        if (e.key == "z" || e.key == "x") {
-            SynthOctaveChange(e.key == "x");
-            document.querySelector("[data-keyboard-shortcut-key=\"" + e.key + "\"]").classList.add("active");
+        if (e.code == "KeyZ" || e.code == "KeyX") {
+            SynthOctaveChange(e.code == "KeyX");
+            document.querySelector("[data-keyboard-shortcut-key=\"" + e.code + "\"]").classList.add("active");
         }
         else
             for (let i = 0; i < noteKeys.length; i++)
-                if (e.key == noteKeys[i].key) {
+                if (e.code == noteKeys[i].code) {
                     SynthNotePress(noteKeys[i].note, noteKeys[i].octave);
                     return;
                 }
@@ -29,14 +29,14 @@ window.addEventListener("keydown", e => {
 });
 
 window.addEventListener("keyup", e => {
-    if (noteKeysDown.includes(e.key)) {
-        noteKeysDown.splice(noteKeysDown.indexOf(e.key), 1);
+    if (noteKeysDown.includes(e.code)) {
+        noteKeysDown.splice(noteKeysDown.indexOf(e.code), 1);
 
-        if (e.key == "z" || e.key == "x")
-            document.querySelector("[data-keyboard-shortcut-key=\"" + e.key + "\"]").classList.remove("active");
+        if (e.code == "z" || e.code == "x")
+            document.querySelector("[data-keyboard-shortcut-key=\"" + e.code + "\"]").classList.remove("active");
         else
             for (let i = 0; i < noteKeys.length; i++)
-                if (e.key == noteKeys[i].key) {
+                if (e.code == noteKeys[i].code) {
                     SynthNoteRelease(noteKeys[i].note, noteKeys[i].octave);
                     return;
                 }

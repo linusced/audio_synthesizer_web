@@ -22,7 +22,10 @@ function isEvalSafe(expression) {
 }
 
 function harmonicsChange(e) {
-    e.target.blur();
+    if (e)
+        e.target.blur();
+
+    synth.waveform.harmonics = [];
 
     const pi = Math.PI, pow = Math.pow; // for eval
 
@@ -36,7 +39,6 @@ function harmonicsChange(e) {
         let phase = 0;
         if (isEvalSafe(phaseExpression))
             phase = eval(phaseExpression);
-
 
         synth.waveform.harmonics.push(new Harmonic(amplitude, phase));
     }
@@ -52,4 +54,45 @@ function harmonicsChange(e) {
         synth.waveform.harmonics.splice(firstDeleteIndex, numHarmonics - firstDeleteIndex);
 
     GUIDrawWaveform();
+}
+
+document.querySelectorAll("[data-harmonics-preset]").forEach(btn => btn.addEventListener("click", () => {
+    harmonicsElement.querySelector("input[data-harmonic-id=\"amplitude-0\"]").value = "1";
+    harmonicsElement.querySelector("input[data-harmonic-id=\"phase-0\"]").value = "0";
+
+    switch (btn.getAttribute("data-harmonics-preset")) {
+        case "sine":
+            for (let h = 2; h <= numHarmonics; h++) {
+                harmonicsElement.querySelector("input[data-harmonic-id=\"amplitude-" + (h - 1) + "\"]").value = "0";
+                harmonicsElement.querySelector("input[data-harmonic-id=\"phase-" + (h - 1) + "\"]").value = "0";
+            }
+            break;
+        case "saw":
+            for (let h = 2; h <= numHarmonics; h++) {
+                harmonicsElement.querySelector("input[data-harmonic-id=\"amplitude-" + (h - 1) + "\"]").value = "1 / h";
+                harmonicsElement.querySelector("input[data-harmonic-id=\"phase-" + (h - 1) + "\"]").value = "0";
+            }
+            break;
+        case "square":
+            for (let h = 2; h <= numHarmonics; h++) {
+                harmonicsElement.querySelector("input[data-harmonic-id=\"amplitude-" + (h - 1) + "\"]").value = h % 2 == 1 ? "1 / h" : "0";
+                harmonicsElement.querySelector("input[data-harmonic-id=\"phase-" + (h - 1) + "\"]").value = "0";
+            }
+            break;
+        case "triangle":
+            for (let h = 2; h <= numHarmonics; h++) {
+                harmonicsElement.querySelector("input[data-harmonic-id=\"amplitude-" + (h - 1) + "\"]").value = h % 2 == 1 ? "1 / pow(h, 2)" : "0";
+                harmonicsElement.querySelector("input[data-harmonic-id=\"phase-" + (h - 1) + "\"]").value = h % 4 == 3 ? "pi" : "0";
+            }
+            break;
+    }
+    harmonicsChange();
+}));
+
+function GUIHarmonicsInit(harmonicExpressions) {
+    for (let h = 1; h <= numHarmonics; h++) {
+        harmonicsElement.querySelector("input[data-harmonic-id=\"amplitude-" + (h - 1) + "\"]").value = harmonicExpressions[h - 1].amplitude;
+        harmonicsElement.querySelector("input[data-harmonic-id=\"phase-" + (h - 1) + "\"]").value = harmonicExpressions[h - 1].phase;
+    }
+    harmonicsChange();
 }

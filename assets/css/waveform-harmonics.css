@@ -62,3 +62,24 @@
 #waveform-harmonics h2.long {
     width: 42%;
 }
+
+#waveform-harmonics-presets {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+#waveform-harmonics-presets h2 {
+    margin-right: 5px;
+}
+
+#waveform-harmonics-presets button {
+    padding: 4px 2px;
+    font-size: 16px;
+    margin: 0 3px;
+    background-color: #eee;
+    color: #222;
+    border-radius: 10px;
+}

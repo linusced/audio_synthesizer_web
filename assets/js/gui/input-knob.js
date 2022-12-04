@@ -6,19 +6,19 @@ class InputKnob {
         this.ctx = this.canvas.getContext("2d");
         this.span = this.container.querySelector("span");
         this.numInput = this.container.querySelector("input");
-        this.value = inputValue;
+        this.value;
         this.min = inputMin;
         this.max = inputMax;
         this.step = step;
         this.exponent = exponentialRangeExponent;
         this.callback = newValue_callback;
         this.decimals = decimals;
-        this.update(inputValue);
         this.lmbDown = false;
         this.isClick = false;
         this.numInputActive = false;
         this.numInputActiveTimeout = null;
         this.center = { x: 0, y: 0 };
+        this.update(inputValue, this.exponent != 1 ? Math.pow((inputValue - this.min) / (this.max - this.min), 1 / this.exponent) : null);
 
         this.container.addEventListener("mousedown", e => {
             if (!this.numInputActive) {

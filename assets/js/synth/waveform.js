@@ -1,17 +1,35 @@
 class Harmonic {
-    constructor(amplitude = 1.0, phase = 0.0) {
+    constructor(amplitude, phase) {
         this.amplitude = amplitude;
         this.phase = phase;
     }
 };
 
 class Waveform {
-    constructor() {
-        this.amplitude = 0.2;
-        this.harmonics = [new Harmonic()];
+    constructor(harmonics, amplitude = 0.2) {
+        this.harmonics = harmonics;
+        this.amplitude = amplitude;
     }
 
-    fillBuffer() {
+    fillBuffer(buffer, frequency, timeOffset, sampleRate) {
+        buffer.fill(0.0);
 
+        let max = 0.0;
+
+        for (let i = 0; i < buffer.length; i++) {
+            const time = timeOffset + i / sampleRate;
+
+            for (let h = 0; h < this.harmonics.length; h++)
+                if (this.harmonics[h].amplitude > 0.0)
+                    buffer[i] += this.harmonics[h].amplitude * sineWave(frequency * (h + 1), time, this.harmonics[h].phase);
+
+            if (Math.abs(buffer[i]) > max)
+                max = Math.abs(buffer[i]);
+        }
+
+        const mult = this.amplitude / max;
+
+        for (let i = 0; i < buffer.length; i++)
+            buffer[i] *= mult;
     }
 }

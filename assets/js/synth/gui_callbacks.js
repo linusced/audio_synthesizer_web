@@ -76,14 +76,18 @@ function SynthOctaveChange(bIncrease) {
 }
 
 function SynthMIDIPortSelect(index) {
-
+    let i = 0;
+    for (const entry of midi.inputs) {
+        entry[1].onmidimessage = (i == index) ? onMIDIMessage : null;
+        i++;
+    }
 }
 
 function SynthADSR(obj) {
     if (obj.hasOwnProperty("attack"))
         synth.adsr.attackTime = obj.attack;
     else if (obj.hasOwnProperty("decay"))
-        synth.adsr.attackTime = obj.attack;
+        synth.adsr.decayTime = obj.decay;
     else if (obj.hasOwnProperty("sustain"))
         synth.adsr.sustainValue = obj.sustain;
     else if (obj.hasOwnProperty("release"))
@@ -111,5 +115,5 @@ function SynthVolume(vol) {
     else if (vol > 1.0)
         vol = 1.0;
 
-    synth.volume = vol;
+    synth.volume.gain.value = vol;
 }
