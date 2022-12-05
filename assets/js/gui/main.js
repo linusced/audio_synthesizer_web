@@ -17,7 +17,7 @@ window.addEventListener("keydown", e => {
 
         if (e.code == "KeyZ" || e.code == "KeyX") {
             SynthOctaveChange(e.code == "KeyX");
-            document.querySelector("[data-keyboard-shortcut-key=\"" + e.code + "\"]").classList.add("active");
+            document.querySelector("[data-keyboard-shortcut-key=\"" + e.key.toLowerCase() + "\"]").classList.add("active");
         }
         else
             for (let i = 0; i < noteKeys.length; i++)
@@ -32,8 +32,8 @@ window.addEventListener("keyup", e => {
     if (noteKeysDown.includes(e.code)) {
         noteKeysDown.splice(noteKeysDown.indexOf(e.code), 1);
 
-        if (e.code == "z" || e.code == "x")
-            document.querySelector("[data-keyboard-shortcut-key=\"" + e.code + "\"]").classList.remove("active");
+        if (e.code == "KeyZ" || e.code == "KeyX")
+            document.querySelector("[data-keyboard-shortcut-key=\"" + e.key.toLowerCase() + "\"]").classList.remove("active");
         else
             for (let i = 0; i < noteKeys.length; i++)
                 if (e.code == noteKeys[i].code) {
